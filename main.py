@@ -1,7 +1,7 @@
-
+from gui import GUI
 
 def main():
-    pass
+    GUI().run()
 
 if __name__ == '__main__':
     main()
