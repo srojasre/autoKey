@@ -7,6 +7,8 @@ class GUI:
     def __init__(self):
         self.root = tk.Tk()
         self.root.title("AutoClickerOP")
+        self.root.geometry('400x400')
+        self.state = True
         
         self.macro = Macro()
         
@@ -38,15 +40,19 @@ class GUI:
         self.stop_button.config(state=tk.NORMAL)
         self.start_button.config(state=tk.DISABLED)
         
+    
+        
         # Hilo de click
-        threading.Thread(target=lambda: self.macro.mouse_click(interval, click_type, True)).start()
+        threading.Thread(target=lambda: self.macro.mouse_click(interval, click_type, self.state)).start()
         print(f"Iniciado: Intervalo {interval} ms, Botón {click_type}")
 
     def stop_click(self):
         # Aquí se detendría el clic automático adecuadamente
         # NO ESTA TERMINADA
+        self.state = False
         self.start_button.config(state=tk.NORMAL)
         self.stop_button.config(state=tk.DISABLED)
+
         print("Detenido")
 
     def run(self):
